@@ -9,12 +9,11 @@
     @include('components.navbar')
     @include('components.sidebar')
     @include('components.hero')
-
-
-
     @include('components.features')
     @include('components.courses')
     @include('components.cta')
     @include('components.footer')
+    @include('components.plugin.whatsapp')
 </div>
+
 @endsection
