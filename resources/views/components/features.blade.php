@@ -20,15 +20,9 @@
                     </div>
 
                     <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-                        <div class="text-4xl mb-4">🌍</div>
-                        <h3 class="text-xl font-bold mb-3">Jangkauan Internasional</h3>
-                        <p class="text-gray-600">Layanan translasi dan konsultasi untuk publikasi jurnal internasional bereputasi</p>
-                    </div>
-
-                    <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-                        <div class="text-4xl mb-4"></div>
+                        <div class="text-4xl mb-4">👥</div>
                         <h3 class="text-xl font-bold mb-3">Pendekatan Personal</h3>
-                        <p class="text-gray-600">Bimbingan tailored sesuai kebutuhan mahasiswa, dosen, dan peneliti</p>
+                        <p class="text-gray-600">Bimbingan yang disesuaikan dengan kebutuhan mahasiswa, dosen, dan peneliti</p>
                     </div>
 
                     <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
@@ -38,7 +32,7 @@
                     </div>
 
                     <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-                        <div class="text-4xl mb-4"></div>
+                        <div class="text-4xl mb-4">🎯</div>
                         <h3 class="text-xl font-bold mb-3">Layanan Lengkap</h3>
                         <p class="text-gray-600">Dari penerbitan, translasi, konsultasi, hingga pelatihan dalam satu tempat</p>
                     </div>
