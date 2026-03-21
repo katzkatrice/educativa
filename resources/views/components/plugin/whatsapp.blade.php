@@ -28,7 +28,7 @@
         font-weight: bold;
         padding: 4px 7px;
         border-radius: 50%;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
 
     /* CHAT BOX */
@@ -167,9 +167,9 @@
     <!-- HEADER -->
     <div class="wa-header" onclick="toggleChat()">
         <div class="wa-profile">
-            <img src="https://i.pravatar.cc/40" alt="admin">
+            <img src="https://i.pravatar.cc/44" alt="admin">
             <div>
-                <strong>Rahma - Educativa</strong><br>
+                <strong>Risa - DynastiEdu</strong><br>
                 <small>Online</small>
             </div>
         </div>

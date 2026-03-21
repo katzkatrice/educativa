@@ -6,13 +6,14 @@
 
 @section('content')
 <div x-data="{ sidebarOpen: false }" class="relative">
-    @include('components.navbar')
-    @include('components.sidebar')
-    @include('components.hero')
-    @include('components.features')
-    @include('components.courses')
-    @include('components.cta')
-    @include('components.footer')
+    @include('components.page.navbar')
+    @include('components.page.sidebar')
+    @include('components.page.hero')
+    @include('components.page.features')
+    @include('components.page.courses')
+    @include('components.page.cta')
+    @include('components.page.contact')
+    @include('components.page.footer')
     @include('components.plugin.whatsapp')
 </div>
 
