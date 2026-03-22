@@ -9,6 +9,7 @@
     @include('components.page.navbar')
     @include('components.page.sidebar')
     @include('components.page.hero')
+    @include('components.page.tools')
     @include('components.page.features')
     @include('components.page.courses')
     @include('components.page.cta')
