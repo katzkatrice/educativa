@@ -29,6 +29,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.14.3/dist/cdn.min.js"></script>
 
     @stack('head')
+    @stack('styles')
 </head>
 
 <body class="@yield('body_class', 'font-sans antialiased bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-900')">
