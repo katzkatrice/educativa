@@ -4,9 +4,11 @@
     .marqueeSwiper .swiper-wrapper {
         transition-timing-function: linear !important;
     }
+
     .marqueeSwiper .swiper-slide {
         width: auto;
     }
+
     .marqueeSwiper:hover .swiper-wrapper {
         animation-play-state: paused;
     }
@@ -18,11 +20,9 @@
 
         <!-- Header -->
         <div class="text-center mb-10">
-            <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-2">
-                Our Partners
-            </p>
+
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800">
-                Supported Tools &amp; Services
+                Supported Tools
             </h2>
         </div>
 
@@ -31,35 +31,35 @@
             <div class="swiper-wrapper">
 
                 @php
-                    $tools = [
-                        'Garuda', 'IPI', 'Crossref', 'ResearchGate',
-                        'Scholar', 'Turnitin', 'Scopus', 'ISSN', 'Sinta'
-                    ];
+                $tools = [
+                'Garuda', 'IPI', 'Crossref', 'ResearchGate',
+                'Scholar', 'Turnitin', 'Scopus', 'ISSN', 'Sinta'
+                ];
                 @endphp
 
                 @foreach($tools as $tool)
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-28 flex items-center justify-center">
-                            <img src="{{ asset('images/tools/' . $tool . '.png') }}"
-                                alt="{{ $tool }}"
-                                class="h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                                loading="lazy"
-                                onerror="this.style.display='none'">
-                        </div>
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-28 flex items-center justify-center">
+                        <img src="{{ asset('images/tools/' . $tool . '.png') }}"
+                            alt="{{ $tool }}"
+                            class="h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                            loading="lazy"
+                            onerror="this.style.display='none'">
                     </div>
+                </div>
                 @endforeach
 
                 {{-- Duplicate for seamless loop --}}
                 @foreach($tools as $tool)
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-28 flex items-center justify-center">
-                            <img src="{{ asset('images/tools/' . $tool . '.png') }}"
-                                alt="{{ $tool }}"
-                                class="h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                                loading="lazy"
-                                onerror="this.style.display='none'">
-                        </div>
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-28 flex items-center justify-center">
+                        <img src="{{ asset('images/tools/' . $tool . '.png') }}"
+                            alt="{{ $tool }}"
+                            class="h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                            loading="lazy"
+                            onerror="this.style.display='none'">
                     </div>
+                </div>
                 @endforeach
 
             </div>
