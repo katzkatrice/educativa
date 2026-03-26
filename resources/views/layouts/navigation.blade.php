@@ -32,12 +32,39 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center gap-3 rounded-xl border border-blue-100 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-600 shadow-sm transition ease-in-out duration-150 hover:border-blue-200 hover:text-blue-700 focus:outline-none">
-                            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            @php
+                                $user = Auth::user();
+                                $initials = collect(preg_split('/\s+/', trim($user->name) ?: 'U'))
+                                    ->filter()
+                                    ->take(2)
+                                    ->map(fn (string $segment) => strtoupper(substr($segment, 0, 1)))
+                                    ->implode('');
+                                $roleLabel = $user->role === 'admin' ? 'Admin' : 'Member';
+                                $roleColor = $user->role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700';
+                            @endphp
+                            
+                            <!-- Avatar dengan inisial -->
+                            <div class="relative">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-500 text-sm font-bold text-white shadow-md">
+                                    {{ $initials }}
+                                </div>
+                                @if($user->role === 'admin')
+                                    <div class="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 ring-2 ring-white" title="Admin">
+                                        <svg class="h-2.5 w-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                @endif
                             </div>
+                            
                             <div class="text-left">
-                                <div class="font-semibold text-gray-900">{{ Auth::user()->name }}</div>
-                                <div class="text-xs text-gray-500">{{ Auth::user()->email }}</div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-semibold text-gray-900">{{ $user->name }}</span>
+                                    <span class="inline-flex items-center rounded-md px-1.5 py-0.5 text-xs font-medium {{ $roleColor }}">
+                                        {{ $roleLabel }}
+                                    </span>
+                                </div>
+                                <div class="text-xs text-gray-500">{{ $user->email }}</div>
                             </div>
 
                             <div class="ms-1">
@@ -49,9 +76,31 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <!-- User Info -->
+                        <div class="px-4 py-3 border-b border-gray-100">
+                            <p class="text-sm font-semibold text-gray-900">{{ $user->name }}</p>
+                            <p class="text-xs text-gray-500 truncate">{{ $user->email }}</p>
+                            <div class="mt-2">
+                                <span class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium {{ $roleColor }}">
+                                    <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Role: {{ $roleLabel }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu Items -->
+                        <x-dropdown-link :href="route('dashboard')" icon="home">
+                            {{ __('Dashboard') }}
+                        </x-dropdown-link>
+                        
+                        <x-dropdown-link :href="route('profile.edit')" icon="user-circle">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+
+                        <!-- Divider -->
+                        <div class="border-t border-gray-100 my-1"></div>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -59,7 +108,8 @@
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                                this.closest('form').submit();"
+                                    icon="arrow-right-on-rectangle">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
@@ -92,13 +142,38 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-blue-100">
+            @php
+                $user = Auth::user();
+                $roleLabel = $user->role === 'admin' ? 'Admin' : 'Member';
+                $roleColor = $user->role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700';
+            @endphp
+            
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-500 text-sm font-bold text-white shadow-md">
+                        {{ strtoupper(substr($user->name, 0, 1)) }}
+                    </div>
+                    <div>
+                        <div class="font-medium text-base text-gray-800">{{ $user->name }}</div>
+                        <div class="font-medium text-sm text-gray-500">{{ $user->email }}</div>
+                        <div class="mt-1">
+                            <span class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium {{ $roleColor }}">
+                                <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                Role: {{ $roleLabel }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('dashboard')" icon="home">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('profile.edit')" icon="user-circle">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
@@ -108,7 +183,8 @@
 
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                        this.closest('form').submit();"
+                            icon="arrow-right-on-rectangle">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>

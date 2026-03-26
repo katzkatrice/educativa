@@ -25,9 +25,6 @@
         }
     </style>
 
-    <!-- Alpine.js -->
-    <script defer src="https://unpkg.com/alpinejs@3.14.3/dist/cdn.min.js"></script>
-
     @stack('head')
     @stack('styles')
 </head>
