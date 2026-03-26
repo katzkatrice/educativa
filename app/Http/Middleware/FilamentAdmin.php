@@ -17,9 +17,13 @@ class FilamentAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || !Auth::user()->isAdmin()) {
-            Session::flash('not_admin', true);
+        if (!Auth::check()) {
             return redirect()->route('filament.admin.auth.login');
+        }
+
+        if (!Auth::user()->isAdmin()) {
+            Session::flash('not_admin', true);
+            return redirect('/dashboard');
         }
 
         return $next($request);
