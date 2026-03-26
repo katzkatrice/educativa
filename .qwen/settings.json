@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(composer *)",
+      "Bash(php *)",
+      "Bash(curl *)",
+      "Bash(powershell *)"
+    ]
+  },
+  "$version": 3
+}
