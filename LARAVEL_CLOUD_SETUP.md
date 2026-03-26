@@ -30,14 +30,24 @@ DB_PASSWORD=your_password
 SESSION_DRIVER=cookie
 SESSION_SECURE_COOKIE=true
 SESSION_LIFETIME=120
-CACHE_STORE=file
 
-# Security
-APP_KEY=your_app_key_here
-
-# Trust Proxies (penting untuk Laravel Cloud)
-TRUSTED_PROXIES=*
+# CACHE_STORE akan di-inject otomatis oleh Laravel Cloud
+# Jangan set manual jika Laravel Cloud sudah inject
+# CACHE_STORE=database (otomatis dari Laravel Cloud)
 ```
+
+## Injected Variables dari Laravel Cloud
+
+Laravel Cloud mungkin meng-inject variables berikut secara otomatis (tidak dapat diubah):
+
+- `CACHE_STORE=database` - Cache akan disimpan di tabel `cache`
+- `SESSION_DRIVER=cookie` - Session disimpan di cookie
+- `LOG_CHANNEL=stderr` - Log dikirim ke stderr
+
+**Jika `CACHE_STORE=database` di-inject:**
+1. Migration `create_cache_table` sudah disiapkan
+2. Jalankan migration untuk membuat tabel cache
+3. Tidak perlu set manual di dashboard
 
 ## Cara Mendapatkan Kredensial Database
 
